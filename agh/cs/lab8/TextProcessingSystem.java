@@ -1,3 +1,5 @@
+package agh.cs.lab8;
+
 /**
  * Created by yurii on 12/1/16.
  */
