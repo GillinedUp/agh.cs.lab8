@@ -38,7 +38,24 @@ public class TextFormatter implements IFormater {
     }
 
     public void removeSingleChar(){
-        String regex = "2009-11-16";
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(".");
+        for (int i = 0; i < lines.size(); i++) {
+            Matcher matcher = pattern.matcher(lines.get(i));
+            if (matcher.matches()) {
+                lines.remove(i);
+                i--;
+            }
+        }
+    }
+
+    public void removeHyphens(){
+        Pattern firstHalf = Pattern.compile("\\w+-+$");
+        for (int i = 0; i < lines.size(); i++) {
+            Matcher matcherFirstHalf = firstHalf.matcher(lines.get(i));
+            if (matcherFirstHalf.find()) {
+                lines.set(i, lines.get(i).substring(0, lines.get(i).length() - 1) + lines.get(i+1).split(" ", 2)[0]);
+                //lines.set(i+1, lines.get(i+1).split(" ", 2)[1]);
+            }
+        }
     }
 }
