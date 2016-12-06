@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class FileReaderAndOpener implements IFileReader{
 
-    ArrayList<String> lines;
+    private ArrayList<String> lines = new ArrayList<>();
 
     public List<String> openAndReadFile (String filePath){
         try {
@@ -18,7 +18,7 @@ public class FileReaderAndOpener implements IFileReader{
             String line;
             while ((line = reader.readLine()) != null)
             {
-                lines.add(line);
+                this.lines.add(line);
             }
             reader.close();
             return lines;

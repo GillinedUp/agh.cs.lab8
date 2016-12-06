@@ -10,7 +10,7 @@ public class Document implements ITextItem {
     private List<ITextItem> allChapters;
 
     //constructor
-    @Override
+    //@Override
     public void printAll() {
         for (String item: allArticles) {
             System.out.print(item);

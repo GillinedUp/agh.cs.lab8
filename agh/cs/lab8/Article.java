@@ -11,8 +11,8 @@ public class Article implements ITextItem {
         this.textBody = text;
     }
 
-    @Override
-    public void printAll() {
-        System.out.print(this.textBody);
+    //@Override
+    public String toStringAll() {
+        return this.textBody;
     }
 }

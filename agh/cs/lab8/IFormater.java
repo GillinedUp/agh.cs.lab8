@@ -7,9 +7,9 @@ import java.util.List;
  */
 public interface IFormater {
     // iterate through lines and take articles into objects
-    void readArticles(List<String> lines);
+    //void readArticles(List<String> lines);
 
     // removes unnecessary end of line's
-    void removeGarbage(List<String> articles);
+    //void removeGarbage(List<String> articles);
 
 }

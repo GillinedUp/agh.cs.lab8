@@ -13,7 +13,7 @@ public class Chapter implements ITextItem {
         this.articles = articles;
     }
 
-    @Override
+    //@Override
     public void printAll() {
         for (String item: articles) {
             System.out.print(item);
