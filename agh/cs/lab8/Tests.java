@@ -43,8 +43,32 @@ public class Tests {
         TextFormatter tf1 = new TextFormatter(lines1);
         tf1.removeKancelaria();
         tf1.removeDate();
+        tf1.removeSingleChar();
+        tf1.removeHyphens();
         for (String line: lines1) {
             System.out.println(line);
         }
+    }
+
+    @Test
+    public void TextFormatterTest2(){
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add("12) przyjmowania dymisji Rady Ministrów i powierzania jej tymczasowego peł-");
+        lines.add("nienia obowiązków,");
+        Pattern firstHalf = Pattern.compile("[\\S+^-]-$");
+        for (int i = 1; i < lines.size(); i++) {
+            Matcher matcherFirstHalf = firstHalf.matcher(lines.get(i-1));
+            if (matcherFirstHalf.find()) {
+                String[] arr = lines.get(i).split(" ", 2);
+                lines.set(i-1, lines.get(i-1).substring(0, lines.get(i-1).length()-1) + arr[0]);
+                if(arr.length == 1){
+                    lines.remove(i);
+                } else {
+                    lines.set(i, arr[1]);
+                }
+            }
+        }
+        System.out.println(lines.get(0));
+        System.out.println(lines.get(1));
     }
 }
