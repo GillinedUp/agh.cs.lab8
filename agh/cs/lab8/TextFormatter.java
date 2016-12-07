@@ -1,5 +1,7 @@
 package agh.cs.lab8;
 
+import sun.plugin.javascript.navig.Array;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -49,12 +51,17 @@ public class TextFormatter implements IFormater {
     }
 
     public void removeHyphens(){
-        Pattern firstHalf = Pattern.compile("\\w+-+$");
-        for (int i = 0; i < lines.size(); i++) {
-            Matcher matcherFirstHalf = firstHalf.matcher(lines.get(i));
+        Pattern firstHalf = Pattern.compile("[\\S+^-]-$");
+        for (int i = 1; i < lines.size(); i++) {
+            Matcher matcherFirstHalf = firstHalf.matcher(lines.get(i-1));
             if (matcherFirstHalf.find()) {
-                lines.set(i, lines.get(i).substring(0, lines.get(i).length() - 1) + lines.get(i+1).split(" ", 2)[0]);
-                //lines.set(i+1, lines.get(i+1).split(" ", 2)[1]);
+                String[] arr = lines.get(i).split(" ", 2);
+                lines.set(i-1, lines.get(i-1).substring(0, lines.get(i-1).length()-1) + arr[0]);
+                if(arr.length == 1){
+                    lines.remove(i);
+                } else {
+                    lines.set(i, arr[1]);
+                }
             }
         }
     }

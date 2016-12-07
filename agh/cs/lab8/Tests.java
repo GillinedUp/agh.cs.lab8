@@ -52,18 +52,23 @@ public class Tests {
 
     @Test
     public void TextFormatterTest2(){
-        ArrayList<String> lines2 = new ArrayList<>();
-        lines2.add("ogromnymi ofiarami, za kulturę zakorzenioną w chrześcijańskim dziedzictwie Naro-");
-        lines2.add("du i ogólnoludzkich wartościach,");
-        Pattern firstHalf = Pattern.compile("\\w+-+$");
-        for (int i = 0; i < lines2.size(); i++) {
-            Matcher matcherFirstHalf = firstHalf.matcher(lines2.get(i));
+        ArrayList<String> lines = new ArrayList<>();
+        lines.add("12) przyjmowania dymisji Rady Ministrów i powierzania jej tymczasowego peł-");
+        lines.add("nienia obowiązków,");
+        Pattern firstHalf = Pattern.compile("[\\S+^-]-$");
+        for (int i = 1; i < lines.size(); i++) {
+            Matcher matcherFirstHalf = firstHalf.matcher(lines.get(i-1));
             if (matcherFirstHalf.find()) {
-                lines2.set(i, lines2.get(i).substring(0, lines2.get(i).length() - 1) + lines2.get(i+1).split(" ", 2)[0]);
-                lines2.set(i+1, lines2.get(i+1).split(" ", 2)[1]);
+                String[] arr = lines.get(i).split(" ", 2);
+                lines.set(i-1, lines.get(i-1).substring(0, lines.get(i-1).length()-1) + arr[0]);
+                if(arr.length == 1){
+                    lines.remove(i);
+                } else {
+                    lines.set(i, arr[1]);
+                }
             }
         }
-        System.out.println(lines2.get(0));
-        System.out.println(lines2.get(1));
+        System.out.println(lines.get(0));
+        System.out.println(lines.get(1));
     }
 }
