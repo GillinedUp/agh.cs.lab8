@@ -6,22 +6,46 @@ import java.util.List;
  * Created by yurii on 12/5/16.
  */
 public class Document implements ITextItem {
-    private List<String> allArticles;
-    private List<ITextItem> allChapters;
+    private List<Article> allArticles;
+    private List<Chapter> allChapters;
 
     //constructor
-    //@Override
-    public void printAll() {
-        for (String item: allArticles) {
-            System.out.print(item);
+
+    public Document(List<Article> allArticles, List<Chapter> allChapters){
+        this.allArticles = allArticles;
+        this.allChapters = allChapters;
+    }
+
+    //setters
+    void setAllArticles(List<Article> articles){
+        this.allArticles = articles;
+    }
+
+    void setAllChapters(List<Chapter> chapters){
+        this.allChapters = chapters;
+    }
+
+    public String toString() {
+        String s = new String();
+        for (int i = 0; i < this.allArticles.size(); i++) {
+            s += allArticles.toString();
         }
+        return s;
     }
 
-    public void printChapterRange(int start, int finish){
-
+    public String ChapterRange(int start, int finish){
+        String s = new String();
+        for (int i = start; i < finish; i++) {
+            s += allChapters.toString();
+        }
+        return s;
     }
 
-    public void printArticleRange(int start, int finish){
-
+    public String ArticleRange(int start, int finish){
+        String s = new String();
+        for (int i = start; i < finish; i++) {
+            s += allArticles.toString();
+        }
+        return s;
     }
 }
