@@ -2,6 +2,7 @@ package agh.cs.lab8;
 
 import org.junit.Test;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.*;
@@ -46,7 +47,8 @@ public class Tests {
         tf1.removeSingleChar();
         tf1.removeHyphens();
         TextSplitter ts1 = new TextSplitter(tf1.getLines());
-        ts1.splitIntoChapters();
+        Document doc1 = ts1.putTogether();
+        System.out.print(doc1.toString());
     }
 
     @Test
