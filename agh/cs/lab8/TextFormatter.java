@@ -1,8 +1,5 @@
 package agh.cs.lab8;
 
-import sun.plugin.javascript.navig.Array;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,13 +7,19 @@ import java.util.regex.Pattern;
 /**
  * Created by yurii on 12/6/16.
  */
-public class TextFormatter implements IFormater {
+public class TextFormatter implements IFormatter {
 
     private List<String> lines;
 
     //constructor
     public TextFormatter(List<String> lines){
         this.lines = lines;
+    }
+
+    //getter
+    @Override
+    public List<String> getLines(){
+        return this.lines;
     }
 
     public void removeKancelaria(){

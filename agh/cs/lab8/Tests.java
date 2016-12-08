@@ -45,9 +45,8 @@ public class Tests {
         tf1.removeDate();
         tf1.removeSingleChar();
         tf1.removeHyphens();
-        for (String line: lines1) {
-            System.out.println(line);
-        }
+        TextSplitter ts1 = new TextSplitter(tf1.getLines());
+        ts1.splitIntoChapters();
     }
 
     @Test
