@@ -27,7 +27,7 @@ public class Document implements ITextItem {
     public String ChapterRange(int start, int finish){
         String s = new String();
         for (int i = start; i <= finish; i++) {
-            s += allArticles.get(i).toString();
+            s += allChapters.get(i).toString();
         }
         return s;
     }
@@ -35,7 +35,7 @@ public class Document implements ITextItem {
     public String ArticleRange(int start, int finish){
         String s = new String();
         for (int i = start; i <= finish; i++) {
-            s += allArticles.toString();
+            s += allArticles.get(i).toString();
         }
         return s;
     }

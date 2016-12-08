@@ -17,7 +17,7 @@ public class Chapter implements ITextItem {
     public String toString() {
         String s = new String();
         for (int i = 0; i < this.articles.size(); i++) {
-            s += articles.toString();
+            s += articles.get(i).toString();
         }
         return s;
     }

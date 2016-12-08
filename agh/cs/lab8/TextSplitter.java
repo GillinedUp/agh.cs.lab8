@@ -29,7 +29,10 @@ public class TextSplitter implements IFormatter{
 
     public Document putTogether(){
         ArrayList<Object> intro = makeIntroduction();
+        ArrayList<Article> introArt = new ArrayList<>();
+        introArt.add((Article) intro.get(0));
         this.allArticles.add((Article) intro.get(0));
+        this.allChapters.add(new Chapter(introArt));
         splitIntoChapters((int) intro.get(1));
         return new Document(this.allArticles, this.allChapters);
     }
@@ -52,7 +55,7 @@ public class TextSplitter implements IFormatter{
 
     public void splitIntoChapters(int begin){
         Pattern pattern = Pattern.compile("Rozdział .+");
-        int end;
+        int end, count = 1;
         List<String> chapterLines = new ArrayList<>();
         List<Article> articles;
         for (end = begin+1; end < lines.size(); end++) {
@@ -65,6 +68,7 @@ public class TextSplitter implements IFormatter{
                 articles = mergeIntoArticles(chapterLines);
                 this.allChapters.add(new Chapter(articles));
                 this.allArticles.addAll(articles);
+                count++;
             }
             else {                                                // end of chapter
                 begin = end;
@@ -74,6 +78,7 @@ public class TextSplitter implements IFormatter{
                 articles = mergeIntoArticles(chapterLines2);
                 this.allChapters.add(new Chapter(articles));
                 this.allArticles.addAll(articles);
+                count++;
             }
         }
 
