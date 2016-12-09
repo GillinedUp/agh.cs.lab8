@@ -14,13 +14,13 @@ public class Tests {
 
     @Test
     public void fileOpenTest(){
-        String filepath = "/home/yurii/Documents/konstytucja.txt";
+        /*String filepath = "/home/yurii/Documents/konstytucja.txt";
         FileReaderAndOpener f1 = new FileReaderAndOpener();
         List<String> lines1;
         lines1 = f1.openAndReadFile(filepath);
         for (String line: lines1) {
             System.out.println(line);
-        }
+        }*/
     }
 
     @Test
@@ -40,14 +40,18 @@ public class Tests {
         String filepath = "/home/yurii/Documents/konstytucja.txt";
         FileReaderAndOpener f1 = new FileReaderAndOpener();
         List<String> lines1;
-        lines1 = f1.openAndReadFile(filepath);
-        TextFormatter tf1 = new TextFormatter(lines1);
-        tf1.removeKancelaria();
-        tf1.removeDate();
-        tf1.removeSingleChar();
-        tf1.removeHyphens();
-        TextSplitter ts1 = new TextSplitter(tf1.getLines());
-        Document doc1 = ts1.putTogether();
+        try {
+            lines1 = f1.openAndReadFile(filepath);
+            TextFormatter tf1 = new TextFormatter(lines1);
+            tf1.removeKancelaria();
+            tf1.removeDate();
+            tf1.removeSingleChar();
+            tf1.removeHyphens();
+            TextSplitter ts1 = new TextSplitter(tf1.getLines());
+            Document doc1 = ts1.putTogether();
+        } catch (Exception e) {
+            System.out.print(e);
+        }
         //System.out.println(doc1.ArticleRange(31, 201));
         //System.out.println(doc1.ChapterRange(7, 9));
         //System.out.print(doc1.toString());

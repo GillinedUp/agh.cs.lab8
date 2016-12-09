@@ -12,22 +12,14 @@ public class FileReaderAndOpener implements IFileReader{
 
     private ArrayList<String> lines = new ArrayList<>();
 
-    public List<String> openAndReadFile (String filePath){
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = reader.readLine()) != null)
-            {
-                this.lines.add(line);
-            }
-            reader.close();
-            return lines;
-        }
-        catch (Exception e)
+    public List<String> openAndReadFile (String filePath) throws Exception{
+        BufferedReader reader = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = reader.readLine()) != null)
         {
-            System.err.format("Exception occurred trying to read '%s'.", filePath);
-            e.printStackTrace();
-            return null;
+            this.lines.add(line);
         }
+        reader.close();
+        return lines;
     }
 }

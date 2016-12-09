@@ -24,7 +24,9 @@ public class Document implements ITextItem {
         return s;
     }
 
-    public String ChapterRange(int start, int finish){
+    public String ChapterRange(int start, int finish) throws IllegalArgumentException{
+        if (start < 0 || start > finish || finish > allChapters.size())
+            throw new IllegalArgumentException("Incorrect arguments. Consider bounds for chapters: from 0 to " + (allChapters.size()-1));
         String s = new String();
         for (int i = start; i <= finish; i++) {
             s += allChapters.get(i).toString();
@@ -32,7 +34,9 @@ public class Document implements ITextItem {
         return s;
     }
 
-    public String ArticleRange(int start, int finish){
+    public String ArticleRange(int start, int finish) throws IllegalArgumentException{
+        if (start < 0 || start > finish || finish > allArticles.size())
+            throw new IllegalArgumentException("Incorrect arguments. Consider bounds for articles: from 0 to " + (allArticles.size()-1));
         String s = new String();
         for (int i = start; i <= finish; i++) {
             s += allArticles.get(i).toString();
