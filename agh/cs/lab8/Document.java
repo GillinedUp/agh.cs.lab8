@@ -18,8 +18,8 @@ public class Document implements ITextItem {
 
     public String toString() {
         String s = new String();
-        for (int i = 0; i < this.allArticles.size(); i++) {
-            s += allArticles.get(i).toString();
+        for (int i = 0; i < this.allChapters.size(); i++) {
+            s += allChapters.get(i).toString();
         }
         return s;
     }
