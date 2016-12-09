@@ -32,7 +32,7 @@ public class TextSplitter implements IFormatter{
         ArrayList<Article> introArt = new ArrayList<>();
         introArt.add((Article) intro.get(0));
         this.allArticles.add((Article) intro.get(0));
-        this.allChapters.add(new Chapter(introArt));
+        this.allChapters.add(new Chapter(introArt, ""));
         splitIntoChapters((int) intro.get(1));
         return new Document(this.allArticles, this.allChapters);
     }
@@ -55,33 +55,33 @@ public class TextSplitter implements IFormatter{
 
     public void splitIntoChapters(int begin){
         Pattern pattern = Pattern.compile("Rozdział .+");
-        int end, count = 1;
+        int end;
         List<String> chapterLines = new ArrayList<>();
         List<Article> articles;
+        String headline;
         for (end = begin+1; end < lines.size(); end++) {
             Matcher matcher = pattern.matcher(lines.get(end));
             if (!(matcher.matches()) && end != lines.size()-1) {
                 chapterLines.add(lines.get(end-1));
             } else if (end == lines.size()-1){                     // end of text
+                headline = lines.get(begin);
                 chapterLines.add(lines.get(end-1));
                 chapterLines.add(lines.get(end));
                 articles = mergeIntoArticles(chapterLines);
-                this.allChapters.add(new Chapter(articles));
+                this.allChapters.add(new Chapter(articles, headline + "\n"));
                 this.allArticles.addAll(articles);
-                count++;
             }
             else {                                                // end of chapter
+                headline = lines.get(begin);
                 begin = end;
                 List<String> chapterLines2 = chapterLines;
                 chapterLines = new ArrayList<>();
                 chapterLines2.add(lines.get(end-1));
                 articles = mergeIntoArticles(chapterLines2);
-                this.allChapters.add(new Chapter(articles));
+                this.allChapters.add(new Chapter(articles, headline + "\n"));
                 this.allArticles.addAll(articles);
-                count++;
             }
         }
-
     }
 
     public List<Article> mergeIntoArticles(List<String> chapterLines){

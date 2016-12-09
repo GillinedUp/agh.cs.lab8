@@ -8,9 +8,19 @@ import java.util.List;
 public class TextProcessingSystem {
 
     public static void main(String[] args){
-        String filepath = "/home/yurii/Documents/konstytucja.txt";
-        FileReaderAndOpener f1 = new FileReaderAndOpener();
-        List<String> lines1;
-        lines1 = f1.openAndReadFile(filepath);
+        try {
+            FileReaderAndOpener reader = new FileReaderAndOpener();
+            List<String> lines;
+            CommandParser parser = new CommandParser(args);
+            parser.checkCommands();
+            lines = reader.openAndReadFile(args[0]);
+            TextFormatter formatter = new TextFormatter(lines);
+            formatter.removeAllGarbage();
+            TextSplitter splitter = new TextSplitter(formatter.getLines());
+            Document doc = splitter.putTogether();
+            parser.parseTypeOfTextItem(doc);
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }

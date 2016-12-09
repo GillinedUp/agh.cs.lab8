@@ -22,21 +22,22 @@ public class TextFormatter implements IFormatter {
         return this.lines;
     }
 
-    public void removeKancelaria(){
+    public void removeAllGarbage(){
+        removeKancelariaAndData();
+        removeSingleChar();
+        removeHyphens();
+    }
+
+    public void removeKancelariaAndData(){
         Pattern pattern = Pattern.compile("©Kancelaria Sejmu");
+        Pattern pattern1 = Pattern.compile("2009-11-16");
         for (int i = 0; i < lines.size(); i++) {
             Matcher matcher = pattern.matcher(lines.get(i));
             while (matcher.find()) {
                 lines.remove(i);
             }
-        }
-    }
-
-    public void removeDate(){
-        Pattern pattern = Pattern.compile("2009-11-16");
-        for (int i = 0; i < lines.size(); i++) {
-            Matcher matcher = pattern.matcher(lines.get(i));
-            while (matcher.find()) {
+            Matcher matcher1 = pattern1.matcher(lines.get(i));
+            while (matcher1.find()) {
                 lines.remove(i);
             }
         }
