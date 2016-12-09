@@ -23,8 +23,4 @@ public class Chapter implements ITextItem {
         }
         return s;
     }
-
-    public void articleRange(int start, int finish){
-
-    }
 }

@@ -2,7 +2,6 @@ package agh.cs.lab8;
 
 import org.junit.Test;
 
-import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.*;
@@ -43,10 +42,7 @@ public class Tests {
         try {
             lines1 = f1.openAndReadFile(filepath);
             TextFormatter tf1 = new TextFormatter(lines1);
-            tf1.removeKancelaria();
-            tf1.removeDate();
-            tf1.removeSingleChar();
-            tf1.removeHyphens();
+            tf1.removeAllGarbage();
             TextSplitter ts1 = new TextSplitter(tf1.getLines());
             Document doc1 = ts1.putTogether();
         } catch (Exception e) {
