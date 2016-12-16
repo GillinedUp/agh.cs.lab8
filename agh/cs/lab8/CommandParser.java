@@ -28,6 +28,7 @@ public class CommandParser implements ICommandHandler{
             case "-c" : showChapters(doc);
             break;
             case "-a" : showArticles(doc);
+            break;
             default: throw new IllegalArgumentException("Incorrect argument. Use -all for whole document, -c for chapters, -a for articles.");
         }
     }
